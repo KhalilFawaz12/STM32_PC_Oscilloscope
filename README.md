@@ -7,7 +7,7 @@ An end-to-end digital oscilloscope system using a bare-metal STM32 microcontroll
 * **Sampling Rate:** 10 kHz concurrent sampling via TIM2 timer interrupts and ADC1.
 * **Communication Interface:** High-speed USART streaming at **921,600 baud** via FT232R USB-to-UART bridge.
 * **Firmware Implementation:** 100% bare-metal C using direct register manipulation (no HAL libraries).
-* **On-Board Signal Processing:** All signal metrics ($V_{\text{max}}$, $V_{\text{min}}$, $V_{\text{pp}}$, $V_{\text{rms}}$, and Frequency via edge timing with clock drift compensation) are computed directly on the STM32 microcontroller and streamed to the PC, offloading processing overhead from the host application.
+* **On-Board Signal Processing:** Signal metrics $V_{\text{max}}$, $V_{\text{min}}$, $V_{\text{pp}}$, $V_{\text{rms}}$, and Frequency (calculated via edge timing with clock drift compensation) are computed directly on the STM32 microcontroller and streamed to the PC, offloading processing overhead from the host application.
 * **Desktop GUI:** C# WinForms using double-buffered `ConcurrentQueue` data streaming and optimized `FastLine` chart updates at 30 FPS.
 * **Hardware Controls:** Physical push-button debouncing on GPIOE for hardware pause and channel toggle states, synchronized to PC via custom command packets.
 
