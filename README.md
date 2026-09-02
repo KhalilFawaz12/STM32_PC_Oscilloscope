@@ -1,13 +1,13 @@
 # Real-Time Dual-Channel Digital Oscilloscope (STM32 + C# WinForms)
 
-An end-to-end digital oscilloscope system using a bare-metal STM32 microcontroller for high-speed dual-channel analog acquisition and a custom C# Windows Forms desktop host for real-time visualization, protocol parsing, and signal analysis.
+An end-to-end digital oscilloscope system using a bare-metal STM32 microcontroller for high-speed dual-channel analog acquisition, on-board signal metric computation, and a custom C# Windows Forms desktop host dedicated to real-time visualization, protocol parsing, and telemetry rendering.
 
 ## Key Technical Specifications
 
 * **Sampling Rate:** 10 kHz concurrent sampling via TIM2 timer interrupts and ADC1.
 * **Communication Interface:** High-speed USART streaming at **921,600 baud** via FT232R USB-to-UART bridge.
 * **Firmware Implementation:** 100% bare-metal C using direct register manipulation (no HAL libraries).
-* **Signal Metrics Calculated:** $V_{\text{max}}$, $V_{\text{min}}$, $V_{\text{pp}}$, $V_{\text{rms}}$, and Frequency (via edge timing with clock drift compensation).
+* **On-Board Signal Processing:** All signal metrics ($V_{\text{max}}$, $V_{\text{min}}$, $V_{\text{pp}}$, $V_{\text{rms}}$, and Frequency via edge timing with clock drift compensation) are computed directly on the STM32 microcontroller and streamed to the PC, offloading processing overhead from the host application.
 * **Desktop GUI:** C# WinForms using double-buffered `ConcurrentQueue` data streaming and optimized `FastLine` chart updates at 30 FPS.
 * **Hardware Controls:** Physical push-button debouncing on GPIOE for hardware pause and channel toggle states, synchronized to PC via custom command packets.
 
@@ -18,7 +18,7 @@ Data is transmitted in structured byte frames with fixed header bytes and frame-
 | Frame Type | Header | Payload | Tail | Description |
 |---|---|---|---|---|
 | **Raw Sample** | `0xAA` | `[CH1_Byte, CH2_Byte]` | `0x55` | Continuous 10 kHz ADC voltage data |
-| **Statistics** | `0xBB` | `[Vmax1, Vmin1, Freq1_H, Freq1_L, RMS1_H, RMS1_L, Vmax2, Vmin2, Freq2_H, Freq2_L, RMS2_H, RMS2_L]` | `0x55` | 200ms windowed statistical analysis |
+| **Statistics** | `0xBB` | `[Vmax1, Vmin1, Freq1_H, Freq1_L, RMS1_H, RMS1_L, Vmax2, Vmin2, Freq2_H, Freq2_L, RMS2_H, RMS2_L]` | `0x55` | 200ms windowed statistical analysis computed on-chip|
 | **Command** | `0xFF` | `[CMD_ID, STATE]` | `0x55` | Hardware state synchronization (Pause / Channel Toggle) |
 
 ## Hardware Schematic
