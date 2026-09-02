@@ -26,7 +26,7 @@ Data is transmitted in structured byte frames with fixed header bytes and frame-
 ![Schematic](Hardware/circuit_schematic.png)
 
 ### Front-End Input Protection & Conditioning
-* Analog inputs are clamped using Schottky diodes (`3.3V` upper bound, `-3.3V` lower bound).
+* Analog inputs are clamped using 1N4007 diodes (`3.3V` upper bound, `-3.3V` lower bound).
 * RC low-pass filtering ($R = 2\text{ k}\Omega$, $C = 100\text{ nF}$) cuts high-frequency noise prior to ADC conversion.
 * Voltage scaling maps the input signals safely to the `0 - 3.3V` range of the STM32 ADC.
 
