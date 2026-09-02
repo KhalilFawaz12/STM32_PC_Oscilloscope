@@ -1,0 +1,44 @@
+# C# / Visual Studio (PC GUI)
+
+[Bb]in/
+[Oo]bj/
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.log
+
+
+
+# C / STM32 Firmware (Bare-Metal)
+
+Debug/
+Release/
+*.o
+*.elf
+*.bin
+*.hex
+*.map
+*.d
+*.lst
+*.su
+*.bak
+*.sav
+
+
+
+# Proteus Hardware Schematic
+
+*.PWI
+*.DBK
+*.DSN
+Backup Of *.pdsprj
+Last Loaded *.pdsprj
+
+
+
+# OS Generated Files
+
+.DS_Store
+Thumbs.db
