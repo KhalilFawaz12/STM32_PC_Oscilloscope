@@ -1,5 +1,7 @@
 # Real-Time Dual-Channel Digital Oscilloscope (STM32 + C# WinForms)
 
+🎥 **[Watch the full hardware demonstration and GUI in action on YouTube](https://youtu.be/3TDYiW5zPeA)**
+
 An end-to-end digital oscilloscope system using a bare-metal STM32 microcontroller for high-speed dual-channel analog acquisition, on-board signal metric computation, and a custom C# Windows Forms desktop host dedicated to real-time visualization, protocol parsing, and telemetry rendering.
 
 ## Key Technical Specifications
